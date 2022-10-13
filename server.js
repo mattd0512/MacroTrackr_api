@@ -3,68 +3,63 @@
 ////////////////////
 require("dotenv").config() // make env variables available
 const express = require("express")
-const morgan = require("morgan")
-const mongoose = require("mongoose")
 const path = require("path")
-const Macro = require("./models/macro")
-
-// const middleware = require('./utils/middleware')
-// const MacroRouter = require('./controllers/macroControllers')
-// const UserRouter = require('./controllers/userControllers')
-// SEE MORE DEPENDENCIES IN ./utils/middleware.js
-// user and resource routes linked in ./utils/middleware.js
-
-/////////////////////////////////////////////
-// Database Connection
-/////////////////////////////////////////////
-// Setup inputs for our connect function
-const DATABASE_URL = process.env.DATABASE_URL
-const CONFIG = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}
-
-// Establish Connection
-mongoose.connect(DATABASE_URL, CONFIG)
-
-// Events for when connection opens/disconnects/errors
-mongoose.connection
-  .on("open", () => console.log("Connected to Mongoose"))
-  .on("close", () => console.log("Disconnected from Mongoose"))
-  .on("error", (error) => console.log(error))
+const https = require("https")
+const MacroRouter = require('./controllers/macroControllers')
+const UserRouter = require('./controllers/userControllers')
+const middleware = require('./utils/middleware')
 
 
-const app = express()
-//////////////////////////////
-// Middleware + App Object  //
-//////////////////////////////
-app.use(morgan("tiny"))
-app.use(express.urlencoded({ extended: true }))
-app.use(express.static("public"))
-app.use(express.json())
+const app = require('liquid-express-views')(express())
 
-////////////////////
-//    Routes      //
-////////////////////
+// ////////////////////
+// //    Routes      //
+// ////////////////////
 
-app.get('/', (req, res) => {
-   res.send('Ok ok I see you!')
+app.get('/', function(req, res) {
+  res.send("Server is running")
+const options = {
+  hostname: 'api.api-ninjas.com',
+  // port: 3000,
+  path: '/v1/nutrition?query=fries',
+  method: 'GET',
+  headers: {
+    'X-Api-Key': process.env.API_KEY
+  },
+};
+
+const request = https.request(options, (response) => {
+
+  console.log('statusCode:', response.statusCode);
+  console.log('headers:', response.headers);
+
+  response.on('data', (d) => {
+    process.stdout.write(d);
+  });
+});
+
+request.on('error', (e) => {
+  console.error(e);
+});
+request.end();
 })
 
 
-// app.use('/users', UserRouter)
-// app.use('/macros', MacroRouter)
+// Register our routes
+app.use('/macros', MacroRouter)
+app.use('/users', UserRouter)
 
 // app.get('/error', (req, res) => {
-// 	const error = req.query.error || 'This Page Does Not Exist'
 //     const { username, loggedIn, userId } = req.session
+//     const error = req.query.error || 'This Page Does Not Exist'
+
 // 	res.render('error.liquid', { error, username, loggedIn, userId })
 // })
 
 // if page is not found, send to error page
-// app.all('*', (req, res) => {
-// 	res.redirect('/error')
-// })
+app.all('*', (req, res) => {
+	res.redirect('/error')
+})
 
 
 
@@ -72,4 +67,4 @@ app.get('/', (req, res) => {
 //      App Listener        //
 //////////////////////////////
 const PORT = process.env.PORT
-app.listen(PORT, () => console.log(`You are now connected to port: ${PORT}`))
+app.listen(PORT, () => console.log(`Now listening to the sweet sounds of port: ${PORT}`))

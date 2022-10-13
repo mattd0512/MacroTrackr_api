@@ -1,21 +1,19 @@
 // import dependencies
 const mongoose = require('./connection')
-
-
-// import user model for populate
 const User = require('./user')
 
 // destructure the schema and model constructors from mongoose
 const { Schema, model } = mongoose
 
 // make macro schema
-const macrosSchema = new Schema({
-  food: String,
+const macroSchema = new Schema({
+  name: String,
   calories: String,
-  protein: String,
+  protein_g: String,
+  carbohydrates_total_g: String
 })
 
-const Macro = model('Macro', macrosSchema)
+const Macro = model('Macro', macroSchema)
 
 /////////////////////////////////
 // Export our Model
