@@ -7,7 +7,7 @@ const express = require("express") // import express
 // we don't need this dependency anymore, because it lives in models/connection.js
 // const mongoose = require("mongoose") // import mongoose
 const path = require("path") // import path module
-// const FruitRouter = require('./controllers/fruitControllers')
+const MacroRouter = require('./controllers/macroController')
 const UserRouter = require('./controllers/user')
 // const CommentRouter = require('./controllers/commentControllers')
 const middleware = require('./utils/middleware')

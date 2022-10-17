@@ -14,17 +14,17 @@
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/fruits">MacroTrackr</a>
+                <a class="navbar-brand" href="/">MacroTrackr</a>
                 {% if loggedIn %}
-                    <a class="nav-link text-light" href="/fruits/mine">Hello {{username}}</a>
+                    <a class="nav-link text-light" href="/macros/mine">Hello {{username}}</a>
                 {% endif %}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <a class="nav-link text-light" href="/fruits">all the fruits</a>
+                    <a class="nav-link text-light" href="/macros">Saved Foods</a>
                     {% if loggedIn %}
-                        <a class="nav-link text-light" href="/fruits/new">New Fruit</a>
+                        <a class="nav-link text-light" href="/macros/new">New Food</a>
                         <a class="nav-link text-light" href="/users/logout">Log Out</a>
 
                     {% else %}
