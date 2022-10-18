@@ -2,29 +2,29 @@
 {% block content %}
   <div class="container-md">
     <article>
-      <h2>{{fruit.name}}
+      <h2>{{macro.name}}
       </h2>
       <h4>
-        {% if fruit.readyToEat %}
+        {% if macro.readyToEat %}
           Ripe and Ready
         {% else %}
           Not Ripe, Not Ready
         {% endif %}
       </h4>
       <h4>The color of this fruit is:
-        {{fruit.color}}
+        {{macro.color}}
       </h4>
-      <div class="colorBox" style="background-color: {{fruit.color}}"></div>
-      {% if fruit.owner == userId %}
+      <div class="colorBox" style="background-color: {{macro.color}}"></div>
+      {% if macro.owner == userId %}
         <div class="btn-group">
           {%- comment -%}
             first button will send us to the edit page
           {%- endcomment -%}
-          <a class="btn btn-primary" href="/fruits/edit/{{fruit.id}}">Edit</a>
+          <a class="btn btn-primary" href="/macros/edit/{{macro.id}}">Edit</a>
           {%- comment -%}
             the second button(which will actually be a form, will send a DELETE request)
           {%- endcomment -%}
-          <form action="/fruits/{{fruit.id}}?_method=DELETE" method="POST">
+          <form action="/macros/{{macro.id}}?_method=DELETE" method="POST">
             <input class="btn btn-danger" type="submit" value="Delete">
           </form>
         </div>
@@ -35,7 +35,7 @@
     <hr>
     {% if loggedIn %}
       <div class="col-md-6">
-        <form action="/comments/{{fruit.id}}" method="POST">
+        <form action="/comments/{{macro.id}}" method="POST">
           <fieldset>
             <legend>Add Comment</legend>
             <label class="form-label">comment:</label>
@@ -62,4 +62,4 @@
       <small>no comments yet...</small>
     {% endif %}
   </div>
-{% endblock %}}
+{% endblock %}}}}}

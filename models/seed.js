@@ -4,24 +4,6 @@
 const mongoose = require('./connection')
 const Macro = require('./macro')
 
-// Here, we're going to set up a seed script
-// this will seed our database for us, so we have some starting resources
-// This script will be run, with the command in the terminal `npm run seed`
-
-// router.get("/seed", (req, res) => {
-//     // array of starter fruits
-
-//     // Delete every fruit in the db
-//     Fruit.deleteMany({})
-//         .then(() => {
-//             // seed with the starter fruits array
-//             Fruit.create(startFruits)
-//                 .then(data => {
-//                     res.json(data)
-//                 })
-//         })
-// })
-
 ///////////////////////////////////////
 // Seed Script code
 ///////////////////////////////////////
@@ -29,7 +11,6 @@ const Macro = require('./macro')
 const db = mongoose.connection
 
 db.on('open', () => {
-    // bring in the array of starter fruits
     const startMacros = [
         { food: "Chicken Breast", calories: "233", protein: "43g", carbs: "0g", servingSize: "140g" },
         { food: "Salmon", calories: "413", protein: "44g", carbs: "0g", servingSize: "198g" },
@@ -44,12 +25,10 @@ db.on('open', () => {
 
     ]
 
-    // delete all the existing fruits
     Macro.deleteMany({ owner: null })
         .then(deletedMacros => {
             console.log('this is what .deleteMany returns', deletedMacros)
 
-            // create a bunch of new fruits from startFruits
             Macro.create(startMacros)
                 .then(data => {
                     console.log('here are the newly created macros', data)

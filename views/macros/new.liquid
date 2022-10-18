@@ -1,0 +1,25 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+
+  <div class="container-sm">
+    <form action="/macro" method="POST">
+      <fieldset>
+        <legend>Create New Macro</legend>
+        <label class="form-label">Name:
+        </label>
+        <input class="form-control" type="text" name="name" placeholder="enter the name of food">
+        <label class="form-label">Calories:
+        </label>
+        <input class="form-control" type="text" name="name" placeholder="how many calories?"><label class="form-label">Protein:
+        </label>
+        <input class="form-control" type="text" name="name" placeholder="how many grams of protein?"><label class="form-label">Carbs:
+        </label>
+        <input class="form-control" type="text" name="name" placeholder="how many carbs?"><label class="form-label">Serving Size:
+        </label>
+        <input class="form-control" type="text" name="name" placeholder="serving size?">
+      </fieldset>
+      <input class="btn btn-success" type="submit" value="Create New Macro">
+    </form>
+  </div>
+
+{% endblock %}}}}}}}}}}}}}}}
