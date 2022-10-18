@@ -7,6 +7,7 @@ const express = require("express") // import express
 const path = require("path") // import path module
 const MacroRouter = require('./controllers/macroController')
 const UserRouter = require('./controllers/user')
+const CommentRouter = require('./controllers/commentControllers')
 const middleware = require('./utils/middleware')
 
 /////////////////////////////////////////////
@@ -37,6 +38,7 @@ app.get("/", (req, res) => {
 /////////////////////////////////////////////
 app.use('/users', UserRouter)
 app.use('/macros', MacroRouter)
+app.use('/comments', CommentRouter)
 
 // this renders an error page, gets the error from a url request query
 app.get('/error', (req, res) => {

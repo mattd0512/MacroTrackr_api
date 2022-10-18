@@ -4,16 +4,6 @@
     <article>
       <h2>{{macro.name}}
       </h2>
-      <h4>
-        {% if macro.readyToEat %}
-          Ripe and Ready
-        {% else %}
-          Not Ripe, Not Ready
-        {% endif %}
-      </h4>
-      <h4>The color of this fruit is:
-        {{macro.color}}
-      </h4>
       <div class="colorBox" style="background-color: {{macro.color}}"></div>
       {% if macro.owner == userId %}
         <div class="btn-group">
@@ -53,8 +43,8 @@
     {% if fruit.comments.length > 0%}
       <div class="container-sm justify-content-center">
         <div class="col-md-8 col-lg-6">
-          {% for comment in fruit.comments %}
-            {% render '../comment.liquid', comment: comment, userId: userId, fruit: fruit %}
+          {% for comment in macro.comments %}
+            {% render '../comment.liquid', comment: comment, userId: userId, macro: macro %}
           {% endfor %}
         </div>
       </div>
@@ -62,4 +52,4 @@
       <small>no comments yet...</small>
     {% endif %}
   </div>
-{% endblock %}}}}}
+{% endblock %}}}}}}}

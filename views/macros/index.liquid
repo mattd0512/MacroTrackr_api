@@ -10,7 +10,7 @@
             </h5>
             <div class="card-body">
               <h5 class="card-title">
-                {% if macro.readyToEat %}
+                {% if macro.name %}
                   Ripe
                 {% else %}
                   Not Ripe
@@ -19,9 +19,9 @@
               <p class="card-text">The color of this
                 {{macro.name}}
                 is
-                {{macro.color}}
+                {{macro.protein}}
               </p>
-              <div class="colorBox" style="background-color: {{fruit.color}}"></div>
+              <div class="colorBox" style="background-color: {{macro.name}}"></div>
               <a class="btn btn-info" href="/macro/{{macro.id}}">
                 View
                 {{macro.name}}
@@ -36,4 +36,4 @@
       <h2 class="display-6">No macros yet... time to add some!</h2>
     </div>
   {% endif %}
-{% endblock %}}}
+{% endblock %}}}}
