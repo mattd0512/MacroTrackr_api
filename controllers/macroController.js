@@ -101,9 +101,9 @@ router.put("/:id", (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-    const macrosId = req.params.id
+    const macrosId = req.params.id // variable name here has an s making it plural. we typically don't do possessive variable names because of the confusion here
 
-    Macro.findByIdAndRemove(MacroId)
+    Macro.findByIdAndRemove(MacroId) // and this is where we referenced it without the s and things are crossed up- also shouldn't be capitalized - we only ever capitalize classes in JS ( and react components, and schemas, because they are built from/ are classes )
         .then(macro => {
             res.redirect('/macros')
         })

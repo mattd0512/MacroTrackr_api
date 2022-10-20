@@ -8,7 +8,7 @@ const mongoose = require('./connection')
 const { Schema } = mongoose
 
 // comment schema
-const commentSchema = new Schema({
+const commentSchema = new Schema({ // capitalize our model schema - it is a class and we always capitalize classes in JS
     note: {
         type: String,
         required: true
@@ -25,4 +25,4 @@ const commentSchema = new Schema({
 //////////////////////////////////////////////////
 // Export our schema
 //////////////////////////////////////////////////
-module.exports = commentSchema
+module.exports = commentSchema // see above

@@ -23,13 +23,13 @@ router.post("/:macroId", (req, res) => {
     } else {
         res.sendStatus(401)
     }
-    // find a specific fruit
+    // find a specific fruit // what fruit
     Macro.findById(macroId)
         // do something if it works
         //  --> send a success response status and maybe the comment? maybe the fruit?
         .then(macro => {
             // push the comment into the fruit.comments array
-            macro.comments.push(req.body)
+            macro.comments.push(req.body)// non of your macros have comment arrays, see model
             // we need to save the fruit
             return macro.save()
         })
@@ -41,7 +41,7 @@ router.post("/:macroId", (req, res) => {
         //  --> send some kind of error depending on what went wrong
         .catch(err => res.redirect(`/error?error=${err}`))
 })
-
+// no update ?
 // DELETE
 // only the author of the comment can delete it
 router.delete('/delete/:macroId/:commId', (req, res) => {
@@ -57,7 +57,7 @@ router.delete('/delete/:macroId/:commId', (req, res) => {
             const theComment = macro.comments.id(commId)
             console.log('this is the comment that was found', theComment)
             // make sure the user is logged in
-            if (req.session.loggedIn) {
+            if (req.session.loggedIn) { // combine these blocks with an && since they return the same error
                 // only let the author of the comment delete it
                 if (theComment.author == req.session.userId) {
                     // find some way to remove the comment
