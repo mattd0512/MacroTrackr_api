@@ -4,7 +4,7 @@
 // this is the old mongoose import
 // const mongoose = require("mongoose") // import mongoose
 const mongoose = require('./connection')
-const User = require('./user')
+const User = require('./user')// unused import
 
 
 // we're going to pull the Schema and model from mongoose
@@ -12,7 +12,7 @@ const User = require('./user')
 const { Schema, model } = mongoose
 
 // fruits schema
-const macroSchema = new Schema({
+const macroSchema = new Schema({ // capitalize our model schema - it is a class and we always capitalize classes in JS
     food: String,
     calories: String,
     protein: String,
@@ -24,7 +24,7 @@ const macroSchema = new Schema({
         type: Schema.Types.ObjectId,
         // this line, tells us to refer to the User model
         ref: 'User'
-    },
+    },// we don't have comments brought in and implemented at our model level here yet- should be an array with the imported comment schema inside 
 }, { timestamps: true })
 
 // make the fruit model

@@ -1,22 +1,22 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-  {% if macros.length > 0%}
+  {% if macros.length > 0%} {%- comment -%} commiting the class code with a select all edit <value> edit is unacceptable </value> {%- endcomment -%}
     <div>
       <h2 class="display-6">All Macros</h2>
       <div class="row">
-        {% for macro in macro %}
+        {% for macro in macro %}{%- comment -%} incorrect, second macro should be plural {%- endcomment -%}
           <div class="card" style="width: 18rem;">
             <h5 class="card-header">{{macro.name}}
             </h5>
             <div class="card-body">
               <h5 class="card-title">
                 {% if macro.name %}
-                  Ripe
+                  Ripe {%- comment -%} wat {%- endcomment -%}
                 {% else %}
-                  Not Ripe
+                  Not Ripe {%- comment -%} wat wat {%- endcomment -%}
                 {% endif %}
               </h5>
-              <p class="card-text">The color of this
+              <p class="card-text">The color of this {%- comment -%} wat wat wat  {%- endcomment -%}
                 {{macro.name}}
                 is
                 {{macro.protein}}
